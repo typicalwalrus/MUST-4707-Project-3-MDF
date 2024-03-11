@@ -1,7 +1,7 @@
 // https://chat.openai.com/share/5a116660-a4b3-409f-8f4a-5ffcc82b1e60
 // above is the link to a transcript of how I prompted chat to help me create this class as I wouldn't have been able to conceptualize this myself.
 
-const WebMidi = require("webmidi");
+WebMidi.enable();
 
 class MusicNotation {
   constructor(tempo) {
@@ -67,4 +67,4 @@ class MusicNotation {
   }
 }
 
-module.exports = MusicNotation;
+export default MusicNotation;

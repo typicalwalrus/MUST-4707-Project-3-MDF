@@ -4,6 +4,8 @@ await WebMidi.enable();
 // importing our MusicNotation class.
 import MusicNotation from "./MusicNotation.js";
 
+// let key = 60;
+let velocity = 127;
 let tempo = 120;
 const notation = new MusicNotation(tempo);
 
@@ -44,18 +46,26 @@ dropIns.addEventListener("change", function () {
   // After changing the input device, add new listeners for 'noteon' and 'noteoff' events.
   // These listeners will handle MIDI note on (key press) and note off (key release) messages.
 
+  // event listener for Tempo updates
+  let tempoInput = document.getElementById("tempo");
+  let tempo = parseInt(tempoInput.value);
+  notation.updateMM(tempo);
+
   // Right now I'm just trying to make sure that my MusicNotation class doesn't need to be updated and that I can get messages through.
   myInput.addListener("noteon", function (event) {
-    const key = event.note.number;
-    const velocity = event.note.velocity;
-    myOutput.send([0x90, key, 127]); // Note on message format: [status, note, velocity]
+    let key = event.note.number;
+    let velocity = event.note.velocity;
+    myOutput.send([0x90, key, velocity]); // Note on message format: [status, note, velocity]
   });
 
-  myInput.addListener("noteoff", function (event) {
-    const key = event.note.number;
-    setTimeout(myOutput.send([0x80, key, 0]), notation.quarter); // Note off message format: [status, note, velocity] with the quarter function from musicnotation.js
-  });
+  console.log(myOutput.send);
 });
+
+myInput.addListener("noteoff", function (event) {
+  let key = event.note.number;
+  setTimeout(myOutput.send([0x80, key, 0]), notation.quarter); // Note off message format: [status, note, velocity] with the quarter function from musicnotation.js
+});
+// });
 
 // Add an event listener for the 'change' event on the output devices dropdown.
 dropOuts.addEventListener("change", function () {
@@ -67,7 +77,6 @@ dropOuts.addEventListener("change", function () {
 
 // for keeping track of where we are in the lick
 let index = 0;
-let velocity = 127; // Assuming velocity is defined elsewhere
 
 // Function to send a MIDI note on message
 const attack = function (key) {
@@ -97,8 +106,6 @@ const playNote = function (noteValue, key) {
 
 // This function will eventually replace the above noteon and off messages.
 const playTheLick = function (key, velocity) {
-  // zeroing out the index value
-  let index = 0;
   // root note
   playNote(notation.eighth, key);
   // next notes
@@ -107,5 +114,5 @@ const playTheLick = function (key, velocity) {
   playNote(notation.eighth, key + 5);
   playNote(notation.quarter, key + 2);
   playNote(notation.eighth, key - 2);
-  playNote(notation.eighth + notation.whole, key + key);
+  playNote(notation.eighth + notation.whole, key);
 };
