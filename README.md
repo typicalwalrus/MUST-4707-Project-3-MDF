@@ -1,3 +1,4 @@
 # MUST-4707-Project-3-MDF
 Hey Doc, 
-Not sure how but somehow I managed to totally wipeout the dropdown boxes on my project, and I can not for the life of me get them back. I think I'm on the right track with building some pretty cool stuff. Any feedback would be appreciated!
+Update:
+After sleeping on it I managed to fix the dropdown issue, but now I'm lost as to why pressing a key throws crazy errors in the JS console. Do you think you could poke around and see if you can suss  out why that is? Entirely possible I bit off more than I could chew here. Thanks.
