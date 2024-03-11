@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Lick Made Easy!</title>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
+    <script src="script.js" type="module"></script>
+  </head>
+  <body>
+    <h1>Lick Autoplayer (So Killin!)</h1>
+
+    <div>
+      <label for="dropdown-ins">Select a MIDI Input:</label>
+      <select id="dropdown-ins"></select>
+    </div>
+
+    <div>
+      <label for="dropdown-outs">Select a MIDI Output:</label>
+      <select id="dropdown-outs"></select>
+    </div>
+
+    <h2>
+      "The Lick" is a famous musical phrase often used in jazz improvisation. It
+      typically starts on the root note of the current chord or key. While "The
+      Lick" can vary slightly depending on context and interpretation, this
+      program was written to allow aspiring musicians to play this legendary
+      passage simply by pressing a singular key on their keyboard!!!
+    </h2>
+
+    <label for="tempo">Tempo:</label>
+    <input type="number" id="tempo" value="120" />
+    <h3>This box changes the BPM the lick is played back at!</h3>
+  </body>
+</html>
